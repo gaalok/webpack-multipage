@@ -6,6 +6,7 @@ const entries = getEntries('./src/pages/', 'js');
 
 const config = {
   entry: Object.assign(entries, { app: './src/app.js' }),
+
   output: {
     pathinfo: false,
     path: path.resolve(__dirname, '../dist'),
@@ -13,12 +14,14 @@ const config = {
     chunkFilename: 'js/[name].chunk.[chunkhash:8].js',
     publicPath: '/',
   },
+
   resolve: {
     alias: {
       src: path.resolve(__dirname, '../src'),
       components: path.resolve(__dirname, '../src/components'),
     },
   },
+
   module: {
     rules: [
       {
@@ -74,7 +77,9 @@ const config = {
       },
     ],
   },
+
   parallelism: 8,
+
   optimization: {
     splitChunks: {
       chunks: 'all',
@@ -84,6 +89,7 @@ const config = {
           chunks: 'initial',
           minChunks: 2,
         },
+
         vendors: {
           chunks: 'initial',
           name: 'vendors',
@@ -91,6 +97,7 @@ const config = {
           minChunks: 5,
           priority: 10,
         },
+
         default: {
           minChunks: 2,
           priority: -20,
@@ -99,12 +106,13 @@ const config = {
       },
     },
   },
+
   plugins: [],
 };
 
 const pages = getEntries('./src/pages/', 'html');
 
-for (const pathname in pages) {
+Object.keys(pages).forEach((pathname) => {
   // Configured to generate the html file, define paths, etc.
   const conf = {
     filename: `${pathname}.html`, // html output pathname
@@ -115,6 +123,6 @@ for (const pathname in pages) {
     chunksSortMode: 'manual',
   };
   config.plugins.push(new HtmlWebpackPlugin(conf));
-}
+});
 
 module.exports = config;

@@ -1,8 +1,9 @@
 const path = require('path');
 const webpackMerge = require('webpack-merge');
-const webpackConfigBase = require('./webpack.config.base.js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const portfinder = require('portfinder');
+
+const webpackConfigBase = require('./webpack.config.base.js');
 
 const webpackConfigDev = webpackMerge(webpackConfigBase, {
   module: {
@@ -10,14 +11,23 @@ const webpackConfigDev = webpackMerge(webpackConfigBase, {
       {
         test: /\.css$/,
         use: [
-          'style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader',
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          'postcss-loader',
         ],
       },
     ],
   },
+
   devServer: {
     contentBase: path.resolve(__dirname, '../dist'),
     port: 8080,
+    open: true,
     watchOptions: {
       poll: 1000,
     },
@@ -25,6 +35,7 @@ const webpackConfigDev = webpackMerge(webpackConfigBase, {
       children: false,
     },
   },
+
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',

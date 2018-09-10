@@ -1,4 +1,6 @@
-# webpack4-multipage-boilerplate
+# webpack-multipage-template
+
+Forked from [romanslonov](https://github.com/romanslonov/webpack4-multipage-boilerplate). RESPECT!
 
 This is a simple boilerplate for using [webpack 4](https://webpack.js.org) with [pug](https://pugjs.org) and [POSTCSS](https://github.com/postcss/postcss) to build multi-page website.
 

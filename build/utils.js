@@ -1,17 +1,20 @@
 const glob = require('glob');
 
-exports.getEntries = function (context, extension) {
+exports.getEntries = (context, extension) => {
+  let ctx = context;
+  let ext = extension;
+
   if (context[context.length - 1] !== '/') {
-    context += '/';
+    ctx += '/';
   }
 
-  extension = `.${extension}`;
+  ext = `.${extension}`;
 
-  const files = glob.sync(`${context}**/*${extension}`);
+  const files = glob.sync(`${ctx}**/*${ext}`);
   const entries = {};
 
   files.forEach((file) => {
-    entries[file.replace(context, '').replace(extension, '')] = file;
+    entries[file.replace(ctx, '').replace(ext, '')] = file;
   });
 
   return entries;
