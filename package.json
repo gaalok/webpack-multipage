@@ -1,18 +1,19 @@
 {
-  "name": "webpack-multipage-template",
+  "name": "webpack-multipage",
   "author": "gaalok(xumamba@qq.com)",
   "version": "0.0.1",
   "description": "",
   "main": "./src/app.js",
   "scripts": {
     "start": "npm run dev",
-    "build": "webpack --config ./build/webpack.config.prod.js --mode production",
-    "dev": "webpack-dev-server --config ./build/webpack.config.dev.js --mode development"
+    "dev": "webpack-dev-server --config ./build/webpack.config.dev.js --mode development",
+    "build": "webpack --config ./build/webpack.config.prod.js --mode production"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
+    "autoprefixer": "^9.1.5",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.2",
     "clean-webpack-plugin": "^0.1.19",

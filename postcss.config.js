@@ -1,13 +1,13 @@
 module.exports = {
-  plugins: [
-    require('autoprefixer'),
-    require('postcss-import'),
-    require('postcss-nested'),
-    require('postcss-preset-env')({
+  plugins: {
+    autoprefixer: {},
+    'postcss-import': {},
+    'postcss-nested': {},
+    'postcss-preset-env': {
       features: {
         'custom-media-queries': true,
       },
-    }),
-    require('postcss-reporter'),
-  ],
+    },
+    'postcss-reporter': {},
+  },
 };

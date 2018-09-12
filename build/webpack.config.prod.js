@@ -3,30 +3,30 @@ const webpackMerge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const webpackConfigBase = require('./webpack.config.base.js');
 
 module.exports = webpackMerge(webpackConfigBase, {
   module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader, {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-            },
+    rules: [{
+      test: /\.css$/,
+      use: [
+        MiniCssExtractPlugin.loader, {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1,
           },
-          'postcss-loader',
-        ],
-      },
-    ],
+        },
+        'postcss-loader',
+      ],
+    }, ],
   },
 
   optimization: {
     minimizer: [
       new OptimizeCSSAssetsPlugin({}),
+      new UglifyJsPlugin({}),
     ],
   },
 
@@ -35,6 +35,8 @@ module.exports = webpackMerge(webpackConfigBase, {
       filename: 'css/[name].[hash:8].css',
       chunkFilename: 'css/[id].[hash:8].css',
     }),
-    new CleanWebpackPlugin(['dist'], {root: path.resolve(__dirname, '../')}),
+    new CleanWebpackPlugin(['dist'], {
+      root: path.resolve(__dirname, '../')
+    }),
   ],
 });

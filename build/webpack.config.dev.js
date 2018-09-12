@@ -7,21 +7,19 @@ const webpackConfigBase = require('./webpack.config.base.js');
 
 const webpackConfigDev = webpackMerge(webpackConfigBase, {
   module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-            },
+    rules: [{
+      test: /\.css$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1,
           },
-          'postcss-loader',
-        ],
-      },
-    ],
+        },
+        'postcss-loader',
+      ],
+    }],
   },
 
   devServer: {
