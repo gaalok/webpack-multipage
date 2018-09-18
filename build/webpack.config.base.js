@@ -22,11 +22,13 @@ const config = {
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '../src'),
+      src: path.resolve(__dirname, '../src'),
     },
   },
 
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
@@ -36,9 +38,10 @@ const config = {
         use: [{
           loader: 'html-loader',
           options: {
+            // attrs: ['img:src', 'img:data-src'], // for lazy load
             minimize: true,
           },
-        }, ],
+        }],
       },
       {
         test: /\.(png|jpg|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
